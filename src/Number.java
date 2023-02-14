@@ -4,14 +4,13 @@ class Number {
     Notation Notation;
     int Value;
     public static LinkedHashMap<Integer, String> RomanNumerals = new LinkedHashMap<>() {{
-        put(500, "D");
         put(100, "C");
         put(50, "L");
         put(10, "X");
         put(5, "V");
         put(1, "I");
     }};
-    public static int[] Keys = {500, 100, 50, 10, 5, 1};
+    public static int[] Keys = {100, 50, 10, 5, 1};
 
     Number(String str){
         for (var i = 0; i < Numerals.romanNumerals.length; i++){
@@ -54,14 +53,14 @@ class Number {
         int value = Value;
         for (var i = 0; i < 6 && value > 0; i++) {
             int subtrahend = (int) Math.pow(10, Integer.toString(value).length() - 1);
-            if (value - Keys[i] < 0 && Math.abs(value - Keys[i]) <= subtrahend) {
-                result += RomanNumerals.get(subtrahend) + RomanNumerals.get(Keys[i]);
-                value -= Keys[i] - subtrahend;
-            }
-            else if (value - Keys[i] >= 0) {
+            if (value - Keys[i] >= 0) {
                 result += RomanNumerals.get(Keys[i]);
                 value -= Keys[i];
                 i--;
+            }
+            else if (Math.abs(value - Keys[i]) <= subtrahend) {
+                result += RomanNumerals.get(subtrahend) + RomanNumerals.get(Keys[i]);
+                value -= Keys[i] - subtrahend;
             }
         }
         return result;

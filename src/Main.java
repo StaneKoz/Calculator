@@ -3,9 +3,8 @@ import java.util.Scanner;
 public class Main {
     public static String calc(String input) throws InvalidExpressionFormat, InvalidOperator, InvalidResult{
         String[] expression = input.split(" ");
-        if (expression.length != 3){
+        if (expression.length != 3)
             throw new InvalidExpressionFormat("Формат математической операции не удовлетворяет заданию - два операнда и один оператор (+, -, /, *)");
-        }
         var firstArgument = new Number(expression[0]);
         var secondArgument = new Number(expression[2]);
         if (firstArgument.Notation != secondArgument.Notation)
@@ -17,7 +16,7 @@ public class Main {
     }
 
     public static void main(String[] args) throws InvalidExpressionFormat, InvalidOperator, InvalidResult {
-        System.out.println("Вам приветствует тестовый калькулятор.\nПодерживаемые системы счисления:" +
+        System.out.println("Ваc приветствует тестовый калькулятор.\nПодерживаемые системы счисления:" +
                 "римская и арабская\nДиапазон: от 1 до 10 включительно\nДоступные операторы: +, -, *, /");
         Scanner scanner = new Scanner(System.in);
         while (true) {
